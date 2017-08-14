@@ -8,7 +8,7 @@
         Title="Login" Height="458.858" Width="716.691" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,-1">
         <Canvas HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="288" Margin="404,102,0,0">
-            <TextBox x:Name="txtLogin" HorizontalAlignment="Center" Height="46" TextWrapping="Wrap" VerticalAlignment="Center" Width="231" Text="Login" Canvas.Top="90" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="32" SelectionBrush="#FF3A29E6" GotFocus="txtLogin_GotFocus" LostFocus="txtLogin_LostFocus">
+            <TextBox x:Name="txtLogin" HorizontalAlignment="Center" Height="46" TextWrapping="Wrap" VerticalAlignment="Center" Width="231" Text="Login" Canvas.Top="90" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="32" SelectionBrush="#FF3A29E6" GotFocus="txtLogin_GotFocus" LostFocus="txtLogin_LostFocus" TextChanged="txtLogin_TextChanged">
                 <TextBox.Foreground>
                     <SolidColorBrush Color="#FF3A29E6" Opacity="0.3"/>
                 </TextBox.Foreground>

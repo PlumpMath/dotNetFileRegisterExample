@@ -175,6 +175,11 @@ namespace AppBlockchain
                 txtSenha.Password = "xxxxx";
             }
         }
+
+        private void txtLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //TODO ASDF
+        }
     }
 
     
