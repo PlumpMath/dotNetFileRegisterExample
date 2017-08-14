@@ -1,0 +1,35 @@
+﻿<Window x:Class="AppBlockchain.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppBlockchain"
+        mc:Ignorable="d"
+        Title="Login" Height="458.858" Width="716.691" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,2,-1">
+        <Canvas HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="288" Margin="404,102,0,0">
+            <TextBox x:Name="txtLogin" HorizontalAlignment="Center" Height="46" TextWrapping="Wrap" VerticalAlignment="Center" Width="231" Text="Login" Canvas.Top="90" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="32" SelectionBrush="#FF3A29E6" GotFocus="txtLogin_GotFocus" LostFocus="txtLogin_LostFocus">
+                <TextBox.Foreground>
+                    <SolidColorBrush Color="#FF3A29E6" Opacity="0.3"/>
+                </TextBox.Foreground>
+            </TextBox>
+            <PasswordBox x:Name="txtSenha" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Top="141" Width="231" Password="xxxxx" Height="44" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="32" GotFocus="txtSenha_GotFocus" LostFocus="txtSenha_LostFocus">
+                <PasswordBox.Foreground>
+                    <SolidColorBrush Color="#FF3A29E6" Opacity="0.3"/>
+                </PasswordBox.Foreground>
+            </PasswordBox>
+            <Label Content="Bem Vindo!" Width="231" HorizontalContentAlignment="Center" FontSize="18" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Canvas.Left="32"/>
+            <Label Content="Faça Login ou&#xD;&#xA;Crie uma conta" Canvas.Top="31" Width="231" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Canvas.Left="32"/>
+            <Label x:Name="labEsqueci" Content="Esqueci..." Canvas.Left="32" Canvas.Top="254" Width="75" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="labEsqueci_MouseEnter" MouseLeave="labEsqueci_MouseLeave"/>
+            <StackPanel x:Name="stackPanelEsqueci" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="86"  AutomationProperties.Name="stackPanelEsqueci" Canvas.Left="107" Canvas.Top="241" Visibility="Hidden" MouseEnter="stackPanelEsqueci_MouseEnter" MouseLeave="stackPanelEsqueci_MouseLeave" >
+                <Label x:Name="labEsqueciLogin" Content="Login" MouseEnter="labEsqueciLogin_MouseEnter" MouseLeave="labEsqueciLogin_MouseLeave" />
+                <Label x:Name="labEsqueciSenha" Content="Senha" MouseEnter="labEsqueciSenha_MouseEnter" MouseLeave="labEsqueciSenha_MouseLeave" />
+            </StackPanel>
+            <Label x:Name="labCriarConta" Content="Criar Conta" Canvas.Left="193" Canvas.Top="254" MouseDown="labCriarConta_MouseDown" MouseEnter="labCriarConta_MouseEnter" MouseLeave="labCriarConta_MouseLeave"/>
+            <Label x:Name="labConfirmar" Content="Confirmar" Canvas.Left="32" Canvas.Top="200" Width="231" Height="41" Background="#FF3A29E6" Foreground="White" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="labConfirmar_MouseDown" MouseEnter="labConfirmar_MouseEnter" MouseLeave="labConfirmar_MouseLeave"/>
+        </Canvas>
+        <Image x:Name="imgView" HorizontalAlignment="Left" Height="431" VerticalAlignment="Top" Width="404"/>
+        <Image x:Name="imgLogotipo" HorizontalAlignment="Left" Height="57" Margin="469,40,0,0" VerticalAlignment="Top" Width="182"/>
+
+    </Grid>
+</Window>

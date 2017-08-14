@@ -1,0 +1,16 @@
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\MainWindow.g.cs
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\App.g.cs
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain_MarkupCompile.cache
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain_MarkupCompile.lref
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\bin\Debug\AppBlockchain.exe.config
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\bin\Debug\AppBlockchain.exe
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\bin\Debug\AppBlockchain.pdb
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\MainWindow.baml
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain.g.resources
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain.Properties.Resources.resources
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain.csproj.GenerateResource.Cache
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain.exe
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain.pdb
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\Cadastro.g.cs
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\Cadastro.baml
+c:\users\willie\documents\visual studio 2017\Projects\AppBlockchain\AppBlockchain\obj\Debug\AppBlockchain.csprojResolveAssemblyReference.cache
