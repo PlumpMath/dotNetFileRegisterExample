@@ -5,9 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppBlockchain"
         mc:Ignorable="d"
-        Title="Cadastro" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="Cadastro" Height="500.000" Width="800.000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="166,149,0,0" VerticalAlignment="Top" Width="75"/>
+        <Image x:Name="imgFundo" HorizontalAlignment="Left" Height="449" Margin="10,10,0,0" VerticalAlignment="Top" Width="431"/>
+        <Canvas HorizontalAlignment="Left" Height="449" Margin="446,10,0,0" VerticalAlignment="Top" Width="336">
+            <Button x:Name="btnCriarConta" Content="Criar Conta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="227" Canvas.Left="54" Canvas.Top="342" Height="45" Background="#FF3A29E6" Foreground="White" BorderBrush="{x:Null}" FontSize="20" Click="btnCriarConta_Click"/>
+            <Label Content="Criar Conta" Canvas.Left="10" Canvas.Top="109" Width="316" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Canvas x:Name="cnvCampos" Height="172" Canvas.Left="10" Canvas.Top="156" Width="316">
+                <TextBox x:Name="txtNome" Height="23" TextWrapping="Wrap" Text="Nome Completo" Canvas.Top="17" Width="296" Canvas.Left="10" GotFocus="txtNome_GotFocus" LostFocus="txtNome_LostFocus"/>
+                <TextBox x:Name="txtUsuario" Height="23" TextWrapping="Wrap" Text="Usuário" Canvas.Top="45" Width="296" Canvas.Left="10" GotFocus="txtUsuario_GotFocus" LostFocus="txtUsuario_LostFocus"/>
+                <TextBox x:Name="txtEmail" Height="23" TextWrapping="Wrap" Text="E-Mail" Canvas.Top="73" Width="296" Canvas.Left="10" GotFocus="txtEmail_GotFocus" LostFocus="txtEmail_LostFocus"/>
+                <PasswordBox x:Name="pwbSenha" Canvas.Top="101" Width="296" Height="26" Canvas.Left="10" LostFocus="pwbSenha_LostFocus" GotFocus="pwbSenha_GotFocus"/>
+                <PasswordBox x:Name="pwbConfirmSenha" Canvas.Top="136" Width="296" Height="26" Canvas.Left="10" GotFocus="pwbConfirmSenha_GotFocus" LostFocus="pwbConfirmSenha_LostFocus"/>
+                <Label x:Name="labSenha" Content="Senha" Canvas.Top="101" Width="296" MouseDown="labSenha_MouseDown" Canvas.Left="10"/>
+                <Label x:Name="labConfirmSenha" Content="Confirmar Senha" Canvas.Top="136" Width="296" Canvas.Left="10" MouseDown="labConfirmSenha_MouseDown"/>
+
+            </Canvas>
+            <Image x:Name="imgLogotipo" Height="94" Canvas.Left="10" Canvas.Top="10" Width="316"/>
+        </Canvas>
 
     </Grid>
 </Window>

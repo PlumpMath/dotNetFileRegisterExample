@@ -23,6 +23,7 @@ namespace AppBlockchain
         // Apagar informações nos campos texto
         Boolean apagarTxtLogin = true;
         Boolean apagarTxtSenha = true;
+        string imgPath = "C:/Users/Willie/Documents/AStar/Projetos/dotNetFileRegisterExample/AppBlockchain/img/";
 
         public MainWindow()
         {
@@ -35,14 +36,14 @@ namespace AppBlockchain
             // Carregar logotipo
             BitmapImage bitmapLogotipo = new BitmapImage();
             bitmapLogotipo.BeginInit();
-            bitmapLogotipo.UriSource = new Uri("C:/Users/Willie/Documents/Visual Studio 2017/Projects/WpfAppApiTest/WpfAppApiTest/img/starlogo.png");
+            bitmapLogotipo.UriSource = new Uri(imgPath+"starlogo.png");
             bitmapLogotipo.EndInit();
             imgLogotipo.Source = bitmapLogotipo;
-
+            
             // Carregar imagem de fundo
             BitmapImage bitmapFundo = new BitmapImage();
             bitmapFundo.BeginInit();
-            bitmapFundo.UriSource = new Uri("C:/Users/Willie/Documents/Visual Studio 2017/Projects/WpfAppApiTest/WpfAppApiTest/img/fundo.png");
+            bitmapFundo.UriSource = new Uri(imgPath+"fundo.png");
             bitmapFundo.EndInit();
             imgView.Source = bitmapFundo;
         }
@@ -62,8 +63,8 @@ namespace AppBlockchain
         private void labCriarConta_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Chamar rotina de cadastro
-            Cadastro cadastro = new Cadastro();
             this.Hide();
+            Cadastro cadastro = new Cadastro();
             if (!(Boolean)cadastro.ShowDialog())
             {
                 // Se nao realizar o cadastro
@@ -80,7 +81,13 @@ namespace AppBlockchain
         // Acessar
         private void labConfirmar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Acessar sistema
+            this.Hide();
+            Arquivo arquivo = new Arquivo();
+            if(!(Boolean)arquivo.ShowDialog())
+            {
+                // Se a rotina Arquivo for fechada
+                this.Show();
+            }
         }
 
         private void labConfirmar_MouseEnter(object sender, MouseEventArgs e)
