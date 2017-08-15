@@ -19,6 +19,12 @@ namespace AppBlockchain
     /// </summary>
     public partial class Cadastro : Window
     {
+        string nome           = "Nome Completo";
+        string usuario        = "Usuário";
+        string email          = "E-Mail";
+        string senha          = null;
+        string confirmarSenha = null;
+
         string imgPath = "C:/Users/Willie/Documents/AStar/Projetos/dotNetFileRegisterExample/AppBlockchain/img/";
 
         public Cadastro()
@@ -43,14 +49,19 @@ namespace AppBlockchain
             bitmapFundo.EndInit();
             imgFundo.Source = bitmapFundo;
 
-            //labSenha.Visibility = Visibility.Visible;
+            txtNome.Text             = nome;
+            txtUsuario.Text          = usuario;
+            txtEmail.Text            = email;
+            pwbSenha.Password        = senha;
+            pwbConfirmSenha.Password = confirmarSenha;
+
         }
 
         // Nome
         private void txtNome_GotFocus(object sender, RoutedEventArgs e)
         {
             string nome = txtNome.Text;
-            if(nome.Equals("Nome Completo"))
+            if(nome.Equals(nome))
             {
                 txtNome.Text = null;
             }
@@ -60,14 +71,14 @@ namespace AppBlockchain
         {
             if (txtNome.Text.Equals("") || txtNome.Text.Equals(null))
             {
-                txtNome.Text = "Nome Completo";
+                txtNome.Text = nome;
             }
         }
 
         // Usuario
         private void txtUsuario_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txtUsuario.Text.Equals("Usuário"))
+            if (txtUsuario.Text.Equals(usuario))
             {
                 txtUsuario.Text = null;
             }
@@ -77,14 +88,14 @@ namespace AppBlockchain
         {
             if(txtUsuario.Text.Equals("") || txtUsuario.Text.Equals(null))
             {
-                txtUsuario.Text = "Usuário";
+                txtUsuario.Text = usuario;
             }
         }
 
         // E-mail
         private void txtEmail_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(txtEmail.Text.Equals("E-Mail"))
+            if(txtEmail.Text.Equals(email))
             {
                 txtEmail.Text = null;
             }
@@ -94,7 +105,7 @@ namespace AppBlockchain
         {
             if(txtEmail.Text.Equals("") || txtEmail.Text.Equals(null))
             {
-                txtEmail.Text = "E-Mail";
+                txtEmail.Text = email;
             }
         }
 
@@ -141,10 +152,91 @@ namespace AppBlockchain
         // Botao Criar Conta
         private void btnCriarConta_Click(object sender, RoutedEventArgs e)
         {
-            // Todo
-            this.Close();
-            Arquivo arquivo = new Arquivo();
-            arquivo.ShowDialog();
+            if (validarCampos())
+            {
+                this.Close();
+                Arquivo arquivo = new Arquivo();
+                arquivo.ShowDialog();
+            }
+        }
+
+        private Boolean validarCampos()
+        {
+            try
+            {
+                // Nome
+                if (txtNome.Text.Equals(nome))
+                {
+                    MessageBox.Show("Nome inválido");
+                }
+                else if (txtNome.Text.Equals(null) || txtNome.Text.Equals(null))
+                {
+                    MessageBox.Show("Preencha o campo Nome");
+                }
+                else
+                {
+                    // Usuario
+                    if (txtUsuario.Text.Equals(usuario))
+                    {
+                        MessageBox.Show("Usuário inválido");
+                    }
+                    else if (txtUsuario.Text.Equals(null) || txtUsuario.Text.Equals(null))
+                    {
+                        MessageBox.Show("Preencha o campo Usuário");
+                    }
+                    else
+                    {
+                        // E-Mail
+                        if (txtEmail.Text.Equals(email))
+                        {
+                            MessageBox.Show("E-Mail inválido");
+                        }
+                        else if (txtEmail.Text.Equals(null) || txtEmail.Text.Equals(""))
+                        {
+                            MessageBox.Show("Preencha o campo E-Mail");
+                        }
+                        else
+                        {
+                            // Senha
+                            if (pwbSenha.Password.Equals(senha))
+                            {
+                                MessageBox.Show("Senha inválida");
+                            }
+                            else if (pwbSenha.Password.Equals(null) || pwbSenha.Password.Equals(""))
+                            {
+                                MessageBox.Show("Preencha o campo Senha");
+                            }
+                            else
+                            {
+                                // Confirmar Senha
+                                if (pwbConfirmSenha.Password.Equals(confirmarSenha))
+                                {
+                                    MessageBox.Show("Senha inválida");
+                                }
+                                else if (pwbConfirmSenha.Password.Equals(null) || pwbConfirmSenha.Password.Equals(""))
+                                {
+                                    MessageBox.Show("Preencha o campo Confirmar Senha");
+                                }
+                                else if (!pwbConfirmSenha.Password.Equals(pwbSenha.Password))
+                                {
+                                    MessageBox.Show("Senhas diferentes");
+                                    pwbSenha.Password = senha;
+                                    pwbConfirmSenha.Password = confirmarSenha;
+                                }
+                                else
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

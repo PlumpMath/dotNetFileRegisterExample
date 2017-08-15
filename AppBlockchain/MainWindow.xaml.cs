@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AppBlockchain
 {
@@ -20,9 +10,8 @@ namespace AppBlockchain
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Apagar informações nos campos texto
-        Boolean apagarTxtLogin = true;
-        Boolean apagarTxtSenha = true;
+        string login = "Login";
+        string senha = "Senha";
         string imgPath = "C:/Users/Willie/Documents/AStar/Projetos/dotNetFileRegisterExample/AppBlockchain/img/";
 
         public MainWindow()
@@ -36,18 +25,110 @@ namespace AppBlockchain
             // Carregar logotipo
             BitmapImage bitmapLogotipo = new BitmapImage();
             bitmapLogotipo.BeginInit();
-            bitmapLogotipo.UriSource = new Uri(imgPath+"starlogo.png");
+            bitmapLogotipo.UriSource = new Uri(imgPath + "starlogo.png");
             bitmapLogotipo.EndInit();
             imgLogotipo.Source = bitmapLogotipo;
-            
+
             // Carregar imagem de fundo
             BitmapImage bitmapFundo = new BitmapImage();
             bitmapFundo.BeginInit();
-            bitmapFundo.UriSource = new Uri(imgPath+"fundo.png");
+            bitmapFundo.UriSource = new Uri(imgPath + "fundo.png");
             bitmapFundo.EndInit();
             imgView.Source = bitmapFundo;
+
+            txtLogin.Text = login;
+            txtSenha.Password = senha;
+            labConfirmar.Focus();
         }
 
+        // Text Login
+        private void txtLogin_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtLogin.Text.Equals(login))
+            {
+                txtLogin.Text = null;
+            }
+        }
+
+        private void txtLogin_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtLogin.Text.Equals(null) || txtLogin.Text.Equals(""))
+            {
+                txtLogin.Text = login;
+            }
+        }
+
+        // Text Senha
+        private void txtSenha_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtSenha.Password.Equals(senha))
+            {
+                txtSenha.Password = null;
+            }
+        }
+
+        private void txtSenha_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtSenha.Password.Equals(null) || txtSenha.Password.Equals(""))
+            {
+                txtSenha.Password = senha;
+            }
+        }
+
+        // Acessar
+        private void labConfirmar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                // validar login
+                if (txtLogin.Text.Equals(login))
+                {
+                    MessageBox.Show("Login invalido!");
+                }
+                else if (txtLogin.Text.Equals(null) || txtLogin.Text.Equals(""))
+                {
+                    MessageBox.Show("Preencha o campo Login");
+                }
+                else
+                {
+                    // validar senha
+                    if (txtSenha.Password.Equals(senha))
+                    {
+                        MessageBox.Show("Senha inválida");
+                    }
+                    else if (txtSenha.Password.Equals(null) || txtSenha.Password.Equals(""))
+                    {
+                        MessageBox.Show("Preencha o campo Senha");
+                    }
+                    else
+                    {
+                        // Logar
+                        this.Hide();
+                        Arquivo arquivo = new Arquivo();
+                        if (!(Boolean)arquivo.ShowDialog())
+                        {
+                            // Se a rotina Arquivo for fechada
+                            Load(); // Reiniciar tela Login
+                            this.Show();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO
+            }
+        }
+
+        private void labConfirmar_MouseEnter(object sender, MouseEventArgs e)
+        {
+            labConfirmar.FontWeight = FontWeights.Bold;
+        }
+
+        private void labConfirmar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            labConfirmar.FontWeight = FontWeights.Normal;
+        }
 
         // Criar Conta
         private void labCriarConta_MouseEnter(object sender, MouseEventArgs e)
@@ -77,29 +158,6 @@ namespace AppBlockchain
                 // Logar no sistema
             }
         }
-        
-        // Acessar
-        private void labConfirmar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Hide();
-            Arquivo arquivo = new Arquivo();
-            if(!(Boolean)arquivo.ShowDialog())
-            {
-                // Se a rotina Arquivo for fechada
-                this.Show();
-            }
-        }
-
-        private void labConfirmar_MouseEnter(object sender, MouseEventArgs e)
-        {
-            labConfirmar.FontWeight = FontWeights.Bold;
-        }
-
-        private void labConfirmar_MouseLeave(object sender, MouseEventArgs e)
-        {
-            labConfirmar.FontWeight = FontWeights.Normal;
-        }
-
 
         // Restaurar
         private void labEsqueci_MouseEnter(object sender, MouseEventArgs e)
@@ -147,46 +205,6 @@ namespace AppBlockchain
             labEsqueciSenha.FontWeight = FontWeights.Normal;
         }
 
-        // Text Login
-        private void txtLogin_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (apagarTxtLogin)
-            {
-                txtLogin.Text = null;
-                apagarTxtLogin = false;
-            }
-        }
-
-        private void txtLogin_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtLogin.Text.Equals(null) || txtLogin.Text.Equals(""))
-            {
-                txtLogin.Text = "Login";
-            }
-        }
-
-        // Text Senha
-        private void txtSenha_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (apagarTxtSenha)
-            {
-                txtSenha.Password = null;
-                apagarTxtSenha = false;
-            }
-        }
-
-        private void txtSenha_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtSenha.Password.Equals(null) || txtSenha.Password.Equals(""))
-            {
-                txtSenha.Password = "xxxxx";
-            }
-        }
-
-        private void txtLogin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //TODO ASDF
-        }
     }
 
     

@@ -21,7 +21,7 @@
                 <Label x:Name="labConfirmSenha" Content="Confirmar Senha" Canvas.Top="136" Width="296" Canvas.Left="10" MouseDown="labConfirmSenha_MouseDown"/>
 
             </Canvas>
-            <Image x:Name="imgLogotipo" Height="94" Canvas.Left="10" Canvas.Top="10" Width="316"/>
+            <Image x:Name="imgLogotipo" Height="94" Canvas.Left="54" Canvas.Top="10" Width="227"/>
         </Canvas>
 
     </Grid>

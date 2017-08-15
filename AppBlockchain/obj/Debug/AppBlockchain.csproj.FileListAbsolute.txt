@@ -31,3 +31,4 @@ C:\Users\Willie\Documents\AStar\Projetos\dotNetFileRegisterExample\AppBlockchain
 C:\Users\Willie\Documents\AStar\Projetos\dotNetFileRegisterExample\AppBlockchain\obj\Debug\AppBlockchain.pdb
 C:\Users\Willie\Documents\AStar\Projetos\dotNetFileRegisterExample\AppBlockchain\obj\Debug\Arquivo.g.cs
 C:\Users\Willie\Documents\AStar\Projetos\dotNetFileRegisterExample\AppBlockchain\obj\Debug\Arquivo.baml
+C:\Users\Willie\Documents\AStar\Projetos\dotNetFileRegisterExample\AppBlockchain\obj\Debug\AppBlockchain.csprojResolveAssemblyReference.cache

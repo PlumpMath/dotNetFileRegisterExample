@@ -8,7 +8,7 @@
         Title="Login" Height="500.000" Width="800.00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,-1">
         <Canvas HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="288" Margin="494,143,0,0">
-            <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="46" TextWrapping="Wrap" VerticalAlignment="Top" Width="278" Text="Login" Canvas.Top="90" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionBrush="#FF3A29E6" GotFocus="txtLogin_GotFocus" LostFocus="txtLogin_LostFocus" TextChanged="txtLogin_TextChanged">
+            <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="46" TextWrapping="Wrap" VerticalAlignment="Top" Width="278" Text="Login" Canvas.Top="90" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionBrush="#FF3A29E6" GotFocus="txtLogin_GotFocus" LostFocus="txtLogin_LostFocus">
                 <TextBox.Foreground>
                     <SolidColorBrush Color="#FF3A29E6" Opacity="0.3"/>
                 </TextBox.Foreground>
@@ -26,7 +26,7 @@
                 <Label x:Name="labEsqueciSenha" Content="Senha" MouseEnter="labEsqueciSenha_MouseEnter" MouseLeave="labEsqueciSenha_MouseLeave" />
             </StackPanel>
             <Label x:Name="labCriarConta" Content="Criar Conta" Canvas.Left="193" Canvas.Top="254" MouseDown="labCriarConta_MouseDown" MouseEnter="labCriarConta_MouseEnter" MouseLeave="labCriarConta_MouseLeave"/>
-            <Label x:Name="labConfirmar" Content="Confirmar" Canvas.Top="200" Width="278" Height="41" Background="#FF3A29E6" Foreground="White" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="labConfirmar_MouseDown" MouseEnter="labConfirmar_MouseEnter" MouseLeave="labConfirmar_MouseLeave" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="labConfirmar" Content="Confirmar" Canvas.Top="200" Width="278" Height="41" Background="#FF3A29E6" Foreground="White" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="labConfirmar_MouseDown" MouseEnter="labConfirmar_MouseEnter" MouseLeave="labConfirmar_MouseLeave" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="True"/>
         </Canvas>
         <Image x:Name="imgView" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="479" Margin="10,10,0,0" Stretch="Fill"/>
         <Image x:Name="imgLogotipo" HorizontalAlignment="Left" Height="92" Margin="526,46,0,0" VerticalAlignment="Top" Width="231"/>
