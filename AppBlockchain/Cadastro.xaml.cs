@@ -25,8 +25,6 @@ namespace AppBlockchain
         string senha          = null;
         string confirmarSenha = null;
 
-        string imgPath = "C:/Users/Willie/Documents/AStar/Projetos/dotNetFileRegisterExample/AppBlockchain/img/";
-
         public Cadastro()
         {
             InitializeComponent();
@@ -35,20 +33,6 @@ namespace AppBlockchain
 
         private void Load()
         {
-            // Carregar logotipo
-            BitmapImage bitmapLogotipo = new BitmapImage();
-            bitmapLogotipo.BeginInit();
-            bitmapLogotipo.UriSource = new Uri(imgPath + "starlogo.png");
-            bitmapLogotipo.EndInit();
-            imgLogotipo.Source = bitmapLogotipo;
-
-            // Carregar imagem de fundo
-            BitmapImage bitmapFundo = new BitmapImage();
-            bitmapFundo.BeginInit();
-            bitmapFundo.UriSource = new Uri(imgPath + "fundo.png");
-            bitmapFundo.EndInit();
-            imgFundo.Source = bitmapFundo;
-
             txtNome.Text             = nome;
             txtUsuario.Text          = usuario;
             txtEmail.Text            = email;

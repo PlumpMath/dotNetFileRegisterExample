@@ -20,7 +20,6 @@ namespace AppBlockchain
     /// </summary>
     public partial class Arquivo : Window
     {
-        string imgPath = "C:/Users/Willie/Documents/AStar/Projetos/dotNetFileRegisterExample/AppBlockchain/img/";
 
         public Arquivo()
         {
@@ -32,25 +31,14 @@ namespace AppBlockchain
         {
             try
             {
-                // Carregar logotipo
-                BitmapImage bitmapLogotipo = new BitmapImage();
-                bitmapLogotipo.BeginInit();
-                bitmapLogotipo.UriSource = new Uri(imgPath + "starlogo.png");
-                bitmapLogotipo.EndInit();
-                imgLogotipo.Source = bitmapLogotipo;
-
-                // Carregar imagem de fundo
-                BitmapImage bitmapFundo = new BitmapImage();
-                bitmapFundo.BeginInit();
-                bitmapFundo.UriSource = new Uri(imgPath + "arquivo.png");
-                bitmapFundo.EndInit();
-                imgDropArquivo.Source = bitmapFundo;
+                // TODO
+                
             }
             catch(System.IO.IOException ex)
             {
-                MessageBox.Show("Não foi possivel carregar imagem. Exception: " + ex.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+                // TODO
             }
-            
+
         }
 
         // Menu Arquivo Registrar
@@ -116,15 +104,12 @@ namespace AppBlockchain
             }
         }
 
-        // Text Encontrar Arquivo
+        // Text local Arquivo
         private void txtLocalArq_GotFocus(object sender, RoutedEventArgs e)
         {
             txtLocalArq.Text = null;
         }
         
-
-
-
         // Registrar
         private void labRegistrar_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -147,6 +132,24 @@ namespace AppBlockchain
             labValidar.FontWeight = FontWeights.Normal;
         }
 
+
+        // ______________
+        // Chamada API...
+        // --------------
+        private void labRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ApiBlockchain api = new ApiBlockchain();
+            MessageBox.Show(api.Token().ToString());
+        }
+
+        private void labValidar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ApiBlockchain api = new ApiBlockchain();
+            MessageBox.Show(api.Validar());
+        }
+
         
+
+
     }
 }

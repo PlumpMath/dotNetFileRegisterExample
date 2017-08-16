@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace AppBlockchain
@@ -12,35 +13,26 @@ namespace AppBlockchain
     {
         string login = "Login";
         string senha = "Senha";
-        string imgPath = "C:/Users/Willie/Documents/AStar/Projetos/dotNetFileRegisterExample/AppBlockchain/img/";
 
         public MainWindow()
         {
             InitializeComponent();
             Load();
+            loadImg();
         }
 
         private void Load()
         {
-            // Carregar logotipo
-            BitmapImage bitmapLogotipo = new BitmapImage();
-            bitmapLogotipo.BeginInit();
-            bitmapLogotipo.UriSource = new Uri(imgPath + "starlogo.png");
-            bitmapLogotipo.EndInit();
-            imgLogotipo.Source = bitmapLogotipo;
-
-            // Carregar imagem de fundo
-            BitmapImage bitmapFundo = new BitmapImage();
-            bitmapFundo.BeginInit();
-            bitmapFundo.UriSource = new Uri(imgPath + "fundo.png");
-            bitmapFundo.EndInit();
-            imgView.Source = bitmapFundo;
-
-            txtLogin.Text = login;
+            txtLogin.Text     = login;
             txtSenha.Password = senha;
             labConfirmar.Focus();
         }
-
+        
+        private void loadImg()
+        {
+            // TODO
+        }
+        
         // Text Login
         private void txtLogin_GotFocus(object sender, RoutedEventArgs e)
         {

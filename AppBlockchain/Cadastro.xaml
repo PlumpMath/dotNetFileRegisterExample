@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Cadastro" Height="500.000" Width="800.000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Image x:Name="imgFundo" HorizontalAlignment="Left" Height="449" Margin="10,10,0,0" VerticalAlignment="Top" Width="431"/>
+        <Image x:Name="imgFundo" HorizontalAlignment="Left" Height="449" Margin="10,10,0,0" VerticalAlignment="Top" Width="431" Source="/img/fundo.png"/>
         <Canvas HorizontalAlignment="Left" Height="449" Margin="446,10,0,0" VerticalAlignment="Top" Width="336">
             <Button x:Name="btnCriarConta" Content="Criar Conta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="227" Canvas.Left="54" Canvas.Top="342" Height="45" Background="#FF3A29E6" Foreground="White" BorderBrush="{x:Null}" FontSize="20" Click="btnCriarConta_Click"/>
             <Label Content="Criar Conta" Canvas.Left="10" Canvas.Top="109" Width="316" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
@@ -21,7 +21,7 @@
                 <Label x:Name="labConfirmSenha" Content="Confirmar Senha" Canvas.Top="136" Width="296" Canvas.Left="10" MouseDown="labConfirmSenha_MouseDown"/>
 
             </Canvas>
-            <Image x:Name="imgLogotipo" Height="94" Canvas.Left="54" Canvas.Top="10" Width="227"/>
+            <Image x:Name="imgLogotipo" Height="99" Canvas.Left="54" Canvas.Top="10" Width="227" Source="/img/logotipo.png"/>
         </Canvas>
 
     </Grid>
