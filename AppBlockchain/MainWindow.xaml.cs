@@ -18,7 +18,6 @@ namespace AppBlockchain
         {
             InitializeComponent();
             Load();
-            loadImg();
         }
 
         private void Load()
@@ -26,11 +25,6 @@ namespace AppBlockchain
             txtLogin.Text     = login;
             txtSenha.Password = senha;
             labConfirmar.Focus();
-        }
-        
-        private void loadImg()
-        {
-            // TODO
         }
         
         // Text Login
@@ -75,33 +69,53 @@ namespace AppBlockchain
                 // validar login
                 if (txtLogin.Text.Equals(login))
                 {
-                    MessageBox.Show("Login invalido!");
+                    MessageBox.Show("Login invalido!", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
                 }
                 else if (txtLogin.Text.Equals(null) || txtLogin.Text.Equals(""))
                 {
-                    MessageBox.Show("Preencha o campo Login");
+                    MessageBox.Show("Preencha o campo Login", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
                 }
                 else
                 {
                     // validar senha
                     if (txtSenha.Password.Equals(senha))
                     {
-                        MessageBox.Show("Senha inválida");
+                        MessageBox.Show("Senha inválida", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
                     }
                     else if (txtSenha.Password.Equals(null) || txtSenha.Password.Equals(""))
                     {
-                        MessageBox.Show("Preencha o campo Senha");
+                        MessageBox.Show("Preencha o campo Senha", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
                     }
                     else
                     {
-                        // Logar
-                        this.Hide();
-                        Arquivo arquivo = new Arquivo();
-                        if (!(Boolean)arquivo.ShowDialog())
+                        // Verificar se existe usuario
+                        if (usuarioCadastrado(txtLogin.Text))
                         {
-                            // Se a rotina Arquivo for fechada
-                            Load(); // Reiniciar tela Login
-                            this.Show();
+                            // Verificar se a senha esta correta
+                            if (senhaCorreta(txtSenha.Password))
+                            {
+                                // Logar
+                                this.Hide();
+                                Arquivo arquivo = new Arquivo(txtLogin.Text);
+                                if (!(Boolean)arquivo.ShowDialog())
+                                {
+                                    // Se a rotina Arquivo for fechada
+                                    Load(); // Reiniciar tela Login
+                                    this.Show();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Senha Incorreta", "Atencão", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuário não cadastrado", "Atencão", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }
                 }
@@ -109,6 +123,32 @@ namespace AppBlockchain
             catch (Exception ex)
             {
                 // TODO
+            }
+        }
+
+        private bool usuarioCadastrado(string usuario)
+        {
+            // TODO
+            if (usuario.Equals("usuario"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool senhaCorreta(string senha)
+        {
+            // TODO
+            if (senha.Equals("123"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -142,12 +182,8 @@ namespace AppBlockchain
             {
                 // Se nao realizar o cadastro
                 // Retornar para tela de LOGIN
+                Load();
                 this.Show();
-            }
-            else
-            {
-                // Se realizar o cadastro
-                // Logar no sistema
             }
         }
 

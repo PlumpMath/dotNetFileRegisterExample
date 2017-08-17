@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 
+using AStar;
+using System.IO;
+using System.Security.Cryptography;
+
 namespace AppBlockchain
 {
     /// <summary>
@@ -20,11 +24,16 @@ namespace AppBlockchain
     /// </summary>
     public partial class Arquivo : Window
     {
-
-        public Arquivo()
+        ApiBlockchain api;
+        Usuario usuario;
+        AStar.Model.Transaction transaction;
+        string filePath = null;
+        
+        public Arquivo(string usuario)
         {
             InitializeComponent();
             Load();
+            this.usuario = new Usuario(usuario); // Carregar dados do usuario
         }
 
         private void Load()
@@ -82,6 +91,7 @@ namespace AppBlockchain
             {
                 string fileName = (e.Data.GetData("FileName") as string[])[0];
                 txtLocalArq.Text = fileName;
+                filePath = fileName;
             }
         }
 
@@ -91,6 +101,7 @@ namespace AppBlockchain
             {
                 string fileName = (e.Data.GetData("FileName") as string[])[0];
                 txtLocalArq.Text = fileName;
+                filePath = fileName;
             }
         }
 
@@ -138,18 +149,42 @@ namespace AppBlockchain
         // --------------
         private void labRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ApiBlockchain api = new ApiBlockchain();
-            MessageBox.Show(api.Token().ToString());
+            api     = new ApiBlockchain();
+            
+            // ?
+            string base64 = null;
+            string coin   = null;
+            int test      = 0;
+            // ?
+
+            MessageBox.Show(api.Registrar(usuario.privateKey, usuario.account, usuario.user, usuario.pass, base64, coin, test));
         }
 
         private void labValidar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ApiBlockchain api = new ApiBlockchain();
-            MessageBox.Show(api.Validar());
+            api = new ApiBlockchain();
+            transaction = api.SearchByHash(usuario.privateKey, usuario.account, usuario.user, usuario.pass, usuario.id, hashArq(filePath));
+            MessageBox.Show("Hash: " + transaction.GetHashCode().ToString());
         }
 
-        
-
-
+        private string hashArq(string arquivo)
+        {
+            Stream stream = null;
+            try
+            {
+                SHA256 mySHA256 = SHA256Managed.Create();
+                stream = new FileStream(arquivo, FileMode.Open);
+                stream.Position = 0;
+                byte[] hashValue = mySHA256.ComputeHash(stream);
+                //hashValue = mySHA256.ComputeHash(hashValue);???
+                string hash = BitConverter.ToString(hashValue).Replace("-", String.Empty);
+                return hash;
+            }
+            finally
+            {
+                stream.Close();
+            }
+            
+        }
     }
 }

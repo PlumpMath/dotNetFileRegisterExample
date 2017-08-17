@@ -9,52 +9,67 @@ namespace AppBlockchain
 {
     public class ApiBlockchain
     {
+        AStar.Api.SendApi sendApi;
+        AStar.Api.SearchApi searchApi;
+        AStar.Model.SingleResult singleResult;
+
+        public string Registrar(string privateKey, int account, string user, string pass, string base64, string coin, int test)
+        {
+            try
+            {
+                AStar.Api.SendApi Api = new AStar.Api.SendApi();
+
+                sendApi      = new AStar.Api.SendApi();
+                singleResult = new AStar.Model.SingleResult();
+
+                singleResult = Api.SendFile(AStar.Util.Token.sign(privateKey), account, user, pass, base64, coin, test);
+
+                if ((bool)singleResult.Error)
+                {
+                    return "Erro de execucao da rotina SendFile da API. " + singleResult.Result;
+                }
+                else
+                {
+                    return singleResult.Result;
+                }
+            }
+            catch(Exception ex)
+            {
+                return "Erro na chamada da rotina Registrar. Exception: " + ex.Message;
+            }
+            
+        }
+
+        public AStar.Model.Transaction SearchByHash(string privateKey, int account, string user, string pass, int id, string hash)
+        {
+            try
+            {
+                searchApi = new AStar.Api.SearchApi();
+                return searchApi.SearchByHash(AStar.Util.Token.sign(privateKey), account, user, pass, hash);
+            }
+            catch(Exception ex)
+            {
+                AStar.Model.Transaction transaction = new AStar.Model.Transaction();
+                transaction.Errormessage = "Erro na chamada da rotina SearchByHash. Exception: " + ex.Message;
+                return transaction;
+            }
+            
+        }
         
-        // Api
-        AStar.Api.SearchApi search;
-        AStar.Api.SendApi send;
-
-        // ApiClient
-        AStar.Client.ApiClient client;
-
-        // Model
-        AStar.Model.ServerInfo server_info;
-        AStar.Model.SingleResult singleresult;
-        //AStar.Model.Transaction transaction;
-
-        // Util
-        AStar.Util.Token token;
-
-        public int Token()
+        public AStar.Model.Transaction SearchByApiId(string privateKey, int account, string user, string pass, int id)
         {
-            //AStar.Util.Token.sign
-            return 0;
-        }
-
-        public void Registrar()
-        {
-            //client = new AStar.Client.ApiClient();
-            send = new AStar.Api.SendApi();
-
-            string token = "";
-            int account = 0;
-            string user = "";
-            string pass = "";
-            string base64 = "";
-            string coin = "";
-            int test = 0;
-
-            send.SendFile(token, account, user, pass, base64, coin, test);
-        }
-
-        public string Validar()
-        {
+            try
+            {
+                searchApi = new AStar.Api.SearchApi();
+                return searchApi.SearchByAPIID(AStar.Util.Token.sign(privateKey), account, user, pass, id);
+            }
+            catch(Exception ex)
+            {
+                AStar.Model.Transaction transaction = new AStar.Model.Transaction();
+                transaction.Errormessage = "Erro na chamada da rotina SearchByHash. Exception: " + ex.Message;
+                return transaction;
+            }
             
-            search = new AStar.Api.SearchApi();
-            
-            // search.SearchByHash(AStar.Util.Token.sign(token), account, user, pass, hash);
-            AStar.Model.Transaction transaction = search.SearchByAPIID(AStar.Util.Token.sign(token), account, user, pass, 333);
-            return transaction.Data; // Retorna o HASH
         }
     }
 }

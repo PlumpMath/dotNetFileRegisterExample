@@ -13,7 +13,7 @@
             <Label Content="Criar Conta" Canvas.Left="10" Canvas.Top="109" Width="316" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Canvas x:Name="cnvCampos" Height="172" Canvas.Left="10" Canvas.Top="156" Width="316">
                 <TextBox x:Name="txtNome" Height="23" TextWrapping="Wrap" Text="Nome Completo" Canvas.Top="17" Width="296" Canvas.Left="10" GotFocus="txtNome_GotFocus" LostFocus="txtNome_LostFocus"/>
-                <TextBox x:Name="txtUsuario" Height="23" TextWrapping="Wrap" Text="Usuário" Canvas.Top="45" Width="296" Canvas.Left="10" GotFocus="txtUsuario_GotFocus" LostFocus="txtUsuario_LostFocus"/>
+                <TextBox x:Name="txtUsuario" Height="23" TextWrapping="Wrap" Text="Usuário" Canvas.Top="45" Width="296" Canvas.Left="10" GotFocus="txtUsuario_GotFocus" LostFocus="txtUsuario_LostFocus" Background="White" SelectionBrush="{x:Null}" Foreground="#FF9EBCF0"/>
                 <TextBox x:Name="txtEmail" Height="23" TextWrapping="Wrap" Text="E-Mail" Canvas.Top="73" Width="296" Canvas.Left="10" GotFocus="txtEmail_GotFocus" LostFocus="txtEmail_LostFocus"/>
                 <PasswordBox x:Name="pwbSenha" Canvas.Top="101" Width="296" Height="26" Canvas.Left="10" LostFocus="pwbSenha_LostFocus" GotFocus="pwbSenha_GotFocus"/>
                 <PasswordBox x:Name="pwbConfirmSenha" Canvas.Top="136" Width="296" Height="26" Canvas.Left="10" GotFocus="pwbConfirmSenha_GotFocus" LostFocus="pwbConfirmSenha_LostFocus"/>
