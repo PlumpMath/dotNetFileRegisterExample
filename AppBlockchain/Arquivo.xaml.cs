@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-
-using AStar;
+﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Windows;
+using System.Windows.Input;
 
 namespace AppBlockchain
 {
@@ -27,28 +15,21 @@ namespace AppBlockchain
         ApiBlockchain api;
         Usuario usuario;
         AStar.Model.Transaction transaction;
-        string filePath = null;
-        
+
+
+
+        private string filePath = null;
+
+
+
         public Arquivo(string usuario)
         {
             InitializeComponent();
-            Load();
             this.usuario = new Usuario(usuario); // Carregar dados do usuario
         }
 
-        private void Load()
-        {
-            try
-            {
-                // TODO
-                
-            }
-            catch(System.IO.IOException ex)
-            {
-                // TODO
-            }
 
-        }
+        #region Menu_Registrar
 
         // Menu Arquivo Registrar
         private void labMenuRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -67,6 +48,10 @@ namespace AppBlockchain
             labMenuRegistrar.FontWeight = FontWeights.Bold;
         }
 
+        #endregion
+
+        #region Menu_Validar
+
         // Menu Arquivo Validar
         private void labMenuValidar_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -84,19 +69,22 @@ namespace AppBlockchain
             labMenuValidar.FontWeight = FontWeights.Normal;
         }
 
+        #endregion
+
         // DragAndDrop Arquivo
         private void Rectangle_Drop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent("FileName"))
-            {
-                string fileName = (e.Data.GetData("FileName") as string[])[0];
-                txtLocalArq.Text = fileName;
-                filePath = fileName;
-            }
+            GetPath(e);
         }
 
         private void imgDropArquivo_Drop(object sender, DragEventArgs e)
         {
+            GetPath(e);
+        }
+
+        private void GetPath(DragEventArgs e)
+        {
+
             if (e.Data.GetDataPresent("FileName"))
             {
                 string fileName = (e.Data.GetData("FileName") as string[])[0];
@@ -112,6 +100,7 @@ namespace AppBlockchain
             if (dialog.ShowDialog().Equals(true))
             {
                 txtLocalArq.Text = dialog.FileName;
+                filePath = txtLocalArq.Text;
             }
         }
 
@@ -120,7 +109,7 @@ namespace AppBlockchain
         {
             txtLocalArq.Text = null;
         }
-        
+
         // Registrar
         private void labRegistrar_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -147,17 +136,10 @@ namespace AppBlockchain
         // ______________
         // Chamada API...
         // --------------
-        private void labRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void labRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            api     = new ApiBlockchain();
-            
-            // ?
-            string base64 = null;
-            string coin   = null;
-            int test      = 0;
-            // ?
-
-            MessageBox.Show(api.Registrar(usuario.privateKey, usuario.account, usuario.user, usuario.pass, base64, coin, test));
+            api = new ApiBlockchain();
+            var result = await api.Registrar(usuario.privateKey, usuario.account, usuario.user, usuario.pass, hashArq(filePath), "bitcoin", 1);
         }
 
         private void labValidar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -184,7 +166,7 @@ namespace AppBlockchain
             {
                 stream.Close();
             }
-            
+
         }
     }
 }
