@@ -35,10 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AStar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bitcoin.API.AStarLabs.1.0.0\lib\net45\AStar.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\API\02\bitcoin-dotnet-api-client-master\src\AStar\bin\Debug\AStar.dll</HintPath>
     </Reference>
     <Reference Include="jose-jwt, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\jose-jwt.2.3.0\lib\net40\jose-jwt.dll</HintPath>

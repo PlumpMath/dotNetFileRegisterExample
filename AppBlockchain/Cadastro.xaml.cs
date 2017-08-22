@@ -140,6 +140,7 @@ namespace AppBlockchain
             {
                 // Fechar tela de cadastro e Logar
                 // Obs. Tela login ainda executando em segundo plano
+
                 this.Close();
                 Arquivo arquivo = new Arquivo(txtUsuario.Text);
                 arquivo.ShowDialog();

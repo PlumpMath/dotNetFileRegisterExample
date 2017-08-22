@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows;
@@ -14,28 +15,28 @@ namespace AppBlockchain
     {
         ApiBlockchain api;
         Usuario usuario;
-        AStar.Model.Transaction transaction;
-
-
-
+        AStar.Model.Transaction[] transactions;
         private string filePath = null;
-
-
+        static List<String> protocolos = new List<String>();
 
         public Arquivo(string usuario)
         {
             InitializeComponent();
             this.usuario = new Usuario(usuario); // Carregar dados do usuario
         }
-
-
+        
         #region Menu_Registrar
 
         // Menu Arquivo Registrar
         private void labMenuRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            LimparArquivo();
+            
             labRegistrar.Visibility = Visibility.Visible;
-            labValidar.Visibility = Visibility.Hidden;
+            cnvRegistros.Visibility = Visibility.Visible;
+
+            labValidar.Visibility      = Visibility.Hidden;
+            cnvTransactions.Visibility = Visibility.Hidden;
         }
 
         private void labMenuRegistrar_MouseLeave(object sender, MouseEventArgs e)
@@ -55,8 +56,13 @@ namespace AppBlockchain
         // Menu Arquivo Validar
         private void labMenuValidar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            labRegistrar.Visibility = Visibility.Hidden;
-            labValidar.Visibility = Visibility.Visible;
+            LimparArquivo();
+
+            labValidar.Visibility      = Visibility.Visible;
+            cnvTransactions.Visibility = Visibility.Visible;
+
+            labRegistrar.Visibility    = Visibility.Hidden;
+            cnvRegistros.Visibility = Visibility.Hidden;
         }
 
         private void labMenuValidar_MouseEnter(object sender, MouseEventArgs e)
@@ -71,7 +77,7 @@ namespace AppBlockchain
 
         #endregion
 
-        // DragAndDrop Arquivo
+        #region DragAndDrop Arquivo
         private void Rectangle_Drop(object sender, DragEventArgs e)
         {
             GetPath(e);
@@ -92,6 +98,7 @@ namespace AppBlockchain
                 filePath = fileName;
             }
         }
+        #endregion
 
         // Procurar Arquivo manualmente
         private void btnFindArq_Click(object sender, RoutedEventArgs e)
@@ -132,21 +139,85 @@ namespace AppBlockchain
             labValidar.FontWeight = FontWeights.Normal;
         }
 
-
-        // ______________
-        // Chamada API...
-        // --------------
+        #region Chamada API
         private async void labRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            api = new ApiBlockchain();
-            var result = await api.Registrar(usuario.privateKey, usuario.account, usuario.user, usuario.pass, hashArq(filePath), "bitcoin", 1);
+            if (VerificarTxtArquivo())
+            {
+                if (MessageBox.Show("Registrar Arquivo?", "Atenção!", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.OK)
+                {
+                    api = new ApiBlockchain();
+                    var result = await api.Registrar(usuario.privateKey, usuario.account, usuario.user, usuario.pass, hashArq(filePath), "bitcoin", 1);
+                    protocolos.Add(result);
+                    ApresentarProtocolos();
+                }
+            }
         }
 
         private void labValidar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            api = new ApiBlockchain();
-            transaction = api.SearchByHash(usuario.privateKey, usuario.account, usuario.user, usuario.pass, usuario.id, hashArq(filePath));
-            MessageBox.Show("Hash: " + transaction.GetHashCode().ToString());
+            if (VerificarTxtArquivo())
+            {
+                api = new ApiBlockchain();
+                transactions = api.SearchByHash(usuario.privateKey, usuario.account, usuario.user, usuario.pass, usuario.id, hashArq(filePath));
+                ApresentarTransactions(transactions);
+                /*
+                MessageBox.Show("Data: " + transactions.Data);
+                MessageBox.Show("Coin: " + transactions.Coin);
+                 MessageBox.Show("Data Registro: " + transactions.Blockchaincreationdate.ToString());
+                */
+            }
+        }
+
+        private void ApresentarTransactions(AStar.Model.Transaction[] transactions)
+        {
+            try
+            {
+                listaTransactions.Items.Clear();
+                if (transactions.Length.Equals(0))
+                {
+                    listaTransactions.Items.Add("Não existe registro para esse arquivo.");
+                }
+                else
+                {
+                    for (int i = 0; i < transactions.Length; i++)
+                    {
+                        String erro = transactions[i].Errormessage;
+                        if (!erro.Equals(null))
+                        {
+                            listaTransactions.Items.Add(String.Format("Transaction retornou erro[ {0} ]", erro));
+                        }
+                        else
+                        {
+                            int id = (int)transactions[i].ID;
+                            String Hash = transactions[i].Data.ToString(); // Hash do arquivo
+                            String dataEnvioArquivo = transactions[i].Creationdate.ToString(); // Data de envio do arquivo
+                            String dataRegistroBlockchain = transactions[i].Blockchaincreationdate.ToString(); // Data de registro na Blockchain
+                            String dataConfirmacao = transactions[i].Confirmationdate.ToString(); // Data de registro aceito pela rede
+                            String coin = transactions[i].Coin; // Rede
+
+                            listaTransactions.Items.Add(String.Format("Transaction {0} - Registrado na Blockchain[ {1} ] na data [ {2} ]", id, coin, dataRegistroBlockchain));
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(String.Format("Erro ao apresentar Transações. Exception: {0}", ex.Message), "Atenção");
+            }
+        }
+
+        private Boolean VerificarTxtArquivo()
+        {
+            if(txtLocalArq.Text.Equals(null) || txtLocalArq.Text.Equals("") || txtLocalArq.Text.Equals("..."))
+            {
+                MessageBox.Show("Arquivo inválido", "Atencão", MessageBoxButton.OK, MessageBoxImage.Stop);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private string hashArq(string arquivo)
@@ -166,7 +237,32 @@ namespace AppBlockchain
             {
                 stream.Close();
             }
-
         }
+
+        private void btnVerificarProtocolos_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MessageBox.Show(String.Format("Existem {0} Protocolos", protocolos.Count.ToString()));
+            protocolos.Add("");
+            ApresentarProtocolos();
+        }
+
+        private void ApresentarProtocolos()
+        {
+            // Apresentar os protocolos gerados
+            listaProtocolos.Items.Clear();
+            for(int i=0; i<protocolos.Count; i++)
+            {
+                listaProtocolos.Items.Add(protocolos[i]);
+            }
+        }
+
+        private void LimparArquivo()
+        {
+            txtLocalArq.Text = "...";
+            listaProtocolos.Items.Clear();
+            listaTransactions.Items.Clear();
+        }
+        #endregion
     }
 }

@@ -24,12 +24,20 @@
         <Image x:Name="imgLogotipo" HorizontalAlignment="Left" Height="80" Margin="61,37,0,0" VerticalAlignment="Top" Width="241" Source="/img/logotipo.png"/>
         <Label x:Name="labValidar" Content="Validar" HorizontalAlignment="Left" Margin="443,362,0,0" VerticalAlignment="Top" Height="55" Width="250" Background="#FFDC3030" Foreground="White" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="labValidar_MouseEnter" MouseLeave="labValidar_MouseLeave" MouseDown="labValidar_MouseDown"/>
         <Rectangle HorizontalAlignment="Left" Height="319" Margin="10,142,0,0" Stroke="Black" VerticalAlignment="Top" Width="358" Fill="White"/>
-        <Canvas HorizontalAlignment="Left" Height="100" Margin="10,147,0,0" VerticalAlignment="Top" Width="126">
+        <Canvas HorizontalAlignment="Left" Height="100" Margin="10,147,0,0" VerticalAlignment="Top" Width="79">
             <Label x:Name="labArquivo" Content="Arquivo" HorizontalAlignment="Left" VerticalAlignment="Top" Height="31" Width="61"/>
-            <Label x:Name="labMenuRegistrar" Content="Registrar" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="labMenuRegistrar_MouseDown" MouseEnter="labMenuRegistrar_MouseEnter" MouseLeave="labMenuRegistrar_MouseLeave" Canvas.Left="61" Canvas.Top="31"/>
-            <Label x:Name="labMenuValidar" Content="Validar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57" MouseDown="labMenuValidar_MouseDown" MouseEnter="labMenuValidar_MouseEnter" MouseLeave="labMenuValidar_MouseLeave" Canvas.Left="61" Canvas.Top="62"/>
+            <Label x:Name="labMenuRegistrar" Content="Registrar" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="labMenuRegistrar_MouseDown" MouseEnter="labMenuRegistrar_MouseEnter" MouseLeave="labMenuRegistrar_MouseLeave" Canvas.Left="22" Canvas.Top="31"/>
+            <Label x:Name="labMenuValidar" Content="Validar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57" MouseDown="labMenuValidar_MouseDown" MouseEnter="labMenuValidar_MouseEnter" MouseLeave="labMenuValidar_MouseLeave" Canvas.Left="22" Canvas.Top="62"/>
         </Canvas>
         <Label x:Name="labRegistrar" Content="Registrar" HorizontalAlignment="Left" Margin="443,362,0,0" VerticalAlignment="Top" Height="55" Width="250" Background="#FFDC3030" Foreground="White" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="labRegistrar_MouseEnter" MouseLeave="labRegistrar_MouseLeave" MouseDown="labRegistrar_MouseDown"/>
+        <Canvas x:Name="cnvTransactions" HorizontalAlignment="Left" Height="214" Margin="10,244,0,0" VerticalAlignment="Top" Width="358">
+            <ListBox x:Name="listaTransactions" HorizontalAlignment="Left" Height="166" VerticalAlignment="Top" Width="338" Background="#FFABADB3" Foreground="White" Canvas.Left="10" Canvas.Top="40"/>
+            <Label Content="Transactions" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FFABADB3" Foreground="White" Canvas.Left="10" Canvas.Top="6"/>
+        </Canvas>
+        <Canvas x:Name="cnvRegistros" HorizontalAlignment="Left" Height="214" Margin="10,244,0,0" VerticalAlignment="Top" Width="358">
+            <ListBox x:Name="listaProtocolos" HorizontalAlignment="Left" Height="166" VerticalAlignment="Top" Width="338" Background="#FFABADB3" Foreground="White" Canvas.Top="40" Canvas.Left="10"/>
+            <Label Content="Protocolos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FFABADB3" Foreground="White" Canvas.Left="10" Canvas.Top="7"/>
+        </Canvas>
 
     </Grid>
 </Window>

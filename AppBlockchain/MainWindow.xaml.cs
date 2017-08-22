@@ -22,12 +22,12 @@ namespace AppBlockchain
 
         private void Load()
         {
+            txtLogin.Focus();
             txtLogin.Text     = login;
             txtSenha.Password = senha;
-            labConfirmar.Focus();
         }
-        
-        // Text Login
+
+        #region  Text Login
         private void txtLogin_GotFocus(object sender, RoutedEventArgs e)
         {
             if (txtLogin.Text.Equals(login))
@@ -44,7 +44,20 @@ namespace AppBlockchain
             }
         }
 
-        // Text Senha
+        private void txtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtLogin.Text.Equals(login))
+            {
+                txtLogin.Text = null;
+            }
+            if (e.Key.Equals(Key.Enter))
+            {
+                txtSenha.Focus();
+            }
+        }
+        #endregion
+
+        #region Text Senha
         private void txtSenha_GotFocus(object sender, RoutedEventArgs e)
         {
             if (txtSenha.Password.Equals(senha))
@@ -61,8 +74,27 @@ namespace AppBlockchain
             }
         }
 
-        // Acessar
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.Equals(Key.Enter))
+            {
+                Acessar();
+            }
+        }
+        #endregion
+
+        #region Acessar
         private void labConfirmar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Acessar();
+        }
+
+        private void btnConfirmar_Click(object sender, RoutedEventArgs e)
+        {
+            Acessar();
+        }
+
+        private void Acessar()
         {
             try
             {
@@ -151,6 +183,7 @@ namespace AppBlockchain
                 return false;
             }
         }
+        #endregion
 
         private void labConfirmar_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -233,6 +266,7 @@ namespace AppBlockchain
             labEsqueciSenha.FontWeight = FontWeights.Normal;
         }
 
+        
     }
 
     

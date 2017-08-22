@@ -7,8 +7,6 @@ namespace AppBlockchain
 {
     public class ApiBlockchain
     {
-
-
         public async Task<string> Registrar(string privateKey, int account, string user, string pass, string hash, string coin, int test)
         {
             try
@@ -23,31 +21,30 @@ namespace AppBlockchain
                     return "Erro de execucao da rotina SendFile da API. " + singleResult.Result;
                 else
                     return singleResult.Result;
-
             }
             catch (Exception ex)
             {
                 return "Erro na chamada da rotina Registrar. Exception: " + ex.Message;
             }
-
-
-
         }
 
-
         SearchApi searchApi;
-        public Transaction SearchByHash(string privateKey, int account, string user, string pass, int id, string hash)
+
+        public Transaction[] SearchByHash(string privateKey, int account, string user, string pass, int id, string hash)
         {
             try
             {
                 searchApi = new SearchApi();
-                return searchApi.SearchByHash(AStar.Util.Token.sign(privateKey), account, user, pass, hash);
+                Transaction[] transactions = searchApi.SearchByHash(AStar.Util.Token.sign(privateKey), account, user, pass, hash);
+                return transactions;
             }
             catch (Exception ex)
             {
-                Transaction transaction = new Transaction();
-                transaction.Errormessage = "Erro na chamada da rotina SearchByHash. Exception: " + ex.Message;
-                return transaction;
+                Transaction[] transactions = new Transaction[1];
+                Transaction x = new Transaction();
+                x.Errormessage = "Erro na chamada da rotina SearchByHash. Exception: " + ex.Message;
+                transactions[0] = x;
+                return transactions;
             }
 
         }
