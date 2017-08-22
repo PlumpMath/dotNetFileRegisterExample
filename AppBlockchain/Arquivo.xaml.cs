@@ -183,11 +183,7 @@ namespace AppBlockchain
                     for (int i = 0; i < transactions.Length; i++)
                     {
                         String erro = transactions[i].Errormessage;
-                        if (!erro.Equals(null))
-                        {
-                            listaTransactions.Items.Add(String.Format("Transaction retornou erro[ {0} ]", erro));
-                        }
-                        else
+                        if (erro.Equals(""))
                         {
                             int id = (int)transactions[i].ID;
                             String Hash = transactions[i].Data.ToString(); // Hash do arquivo
@@ -196,7 +192,12 @@ namespace AppBlockchain
                             String dataConfirmacao = transactions[i].Confirmationdate.ToString(); // Data de registro aceito pela rede
                             String coin = transactions[i].Coin; // Rede
 
-                            listaTransactions.Items.Add(String.Format("Transaction {0} - Registrado na Blockchain[ {1} ] na data [ {2} ]", id, coin, dataRegistroBlockchain));
+                            listaTransactions.Items.Add(String.Format("Transaction [ {0} ] - Registrado na Blockchain [ {1} ] na data [ {2} ]", id, coin, dataRegistroBlockchain));
+
+                        }
+                        else
+                        {
+                            listaTransactions.Items.Add(String.Format("Transaction retornou erro[ {0} ]", erro));
                         }
                     }
                 }
@@ -250,8 +251,7 @@ namespace AppBlockchain
         private void ApresentarProtocolos()
         {
             // Apresentar os protocolos gerados
-            listaProtocolos.Items.Clear();
-            for(int i=0; i<protocolos.Count; i++)
+            for (int i=0; i<protocolos.Count; i++)
             {
                 listaProtocolos.Items.Add(protocolos[i]);
             }
