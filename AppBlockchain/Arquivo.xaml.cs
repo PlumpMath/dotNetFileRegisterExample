@@ -240,20 +240,12 @@ namespace AppBlockchain
             }
         }
 
-        private void btnVerificarProtocolos_Click(object sender, RoutedEventArgs e)
-        {
-            
-            MessageBox.Show(String.Format("Existem {0} Protocolos", protocolos.Count.ToString()));
-            protocolos.Add("");
-            ApresentarProtocolos();
-        }
-
         private void ApresentarProtocolos()
         {
             // Apresentar os protocolos gerados
             for (int i=0; i<protocolos.Count; i++)
             {
-                listaProtocolos.Items.Add(protocolos[i]);
+                listaProtocolos.Items.Add(String.Format("Arquivo registrado. Protocolo: {0}", protocolos[i]));
             }
         }
 

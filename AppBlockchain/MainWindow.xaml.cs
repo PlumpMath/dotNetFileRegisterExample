@@ -152,7 +152,7 @@ namespace AppBlockchain
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO
             }
