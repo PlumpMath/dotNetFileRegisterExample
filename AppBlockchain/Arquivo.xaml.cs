@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using System.Timers;
 using System.Windows;
 using System.Windows.Input;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace AppBlockchain
 {
@@ -142,31 +145,55 @@ namespace AppBlockchain
         #region Chamada API
         private async void labRegistrar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (VerificarTxtArquivo())
+            if (ServiceOK())
             {
-                if (MessageBox.Show("Registrar Arquivo?", "Atenção!", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.OK)
+                if (VerificarTxtArquivo())
                 {
-                    api = new ApiBlockchain();
-                    var result = await api.Registrar(usuario.privateKey, usuario.account, usuario.user, usuario.pass, hashArq(filePath), "bitcoin", 1);
-                    protocolos.Add(result);
-                    ApresentarProtocolos();
+                    if (MessageBox.Show("Registrar Arquivo?", "Atenção!", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.OK)
+                    {
+                        labRegistrar.IsEnabled = false;
+                        progress.Visibility = Visibility.Visible;
+                        api = new ApiBlockchain();
+                        var result = await api.Registrar(usuario.privateKey, usuario.account, usuario.user, usuario.pass, hashArq(filePath), "bitcoin", 1);
+                        protocolos.Add(result);
+                        ApresentarProtocolos();
+                        progress.Visibility = Visibility.Hidden;
+                        labRegistrar.IsEnabled = true;
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Conexão com serviço indisponível", "Falha na conexão", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
-        private void labValidar_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void labValidar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (VerificarTxtArquivo())
+            if (ServiceOK())
             {
-                api = new ApiBlockchain();
-                transactions = api.SearchByHash(usuario.privateKey, usuario.account, usuario.user, usuario.pass, usuario.id, hashArq(filePath));
-                ApresentarTransactions(transactions);
-                /*
-                MessageBox.Show("Data: " + transactions.Data);
-                MessageBox.Show("Coin: " + transactions.Coin);
-                 MessageBox.Show("Data Registro: " + transactions.Blockchaincreationdate.ToString());
-                */
+                if (VerificarTxtArquivo())
+                {
+                    labValidar.IsEnabled = false;
+                    progress.Visibility = Visibility.Visible;
+                    bool x = await validar();
+                    progress.Visibility = Visibility.Hidden;
+                    labValidar.IsEnabled = false;
+                }
             }
+            else
+            {
+                MessageBox.Show("Conexão com serviço indisponível", "Falha na conexão", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
+        }
+
+        Task<bool> validar()
+        {
+            api = new ApiBlockchain();
+            transactions = api.SearchByHash(usuario.privateKey, usuario.account, usuario.user, usuario.pass, usuario.id, hashArq(filePath));
+            ApresentarTransactions(transactions);
+            return Task.FromResult(true);
         }
 
         private void ApresentarTransactions(AStar.Model.Transaction[] transactions)
@@ -243,9 +270,10 @@ namespace AppBlockchain
         private void ApresentarProtocolos()
         {
             // Apresentar os protocolos gerados
+            listaProtocolos.Items.Clear();
             for (int i=0; i<protocolos.Count; i++)
             {
-                listaProtocolos.Items.Add(String.Format("Arquivo registrado. Protocolo: {0}", protocolos[i]));
+                listaProtocolos.Items.Add(protocolos[i]);
             }
         }
 
@@ -254,6 +282,24 @@ namespace AppBlockchain
             txtLocalArq.Text = "...";
             listaProtocolos.Items.Clear();
             listaTransactions.Items.Clear();
+        }
+
+        
+        private Boolean ServiceOK()
+        {
+            try
+            {
+                Uri Url = new System.Uri("https://blockchain.astar.tech/docs/"); // Servidor API
+
+                
+                WebRequest WebReq = System.Net.WebRequest.Create(Url);
+                WebResponse Resp = WebReq.GetResponse();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         #endregion
     }
