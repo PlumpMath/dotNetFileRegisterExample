@@ -1,7 +1,9 @@
-﻿using AStar.Api;
+﻿using System;
+using AStar.Api;
 using AStar.Model;
-using System;
+using AStar.Util;
 using System.Threading.Tasks;
+
 
 namespace AppBlockchain
 {
@@ -11,12 +13,14 @@ namespace AppBlockchain
         {
             try
             {
+                // Declaração e Instancia de objetos das classes utilizadas
                 SendApi Api = new SendApi();
                 SingleResult singleResult = new SingleResult();
 
-
+                // Chamada do metodo de registro de arquivos da API
                 singleResult = await Api.SendHashAsync(AStar.Util.Token.sign(privateKey), account, user, pass, hash, coin, test);
 
+                // Verificação do retorno do metodo
                 if (singleResult.Error != null)
                     return "Erro de execucao da rotina SendFile da API. " + singleResult.Result;
                 else
@@ -34,8 +38,11 @@ namespace AppBlockchain
         {
             try
             {
+                // Daclaracao e instancia de objeto da classe utilizada
                 searchApi = new SearchApi();
-                Transaction[] transactions = searchApi.SearchByHash(AStar.Util.Token.sign(privateKey), account, user, pass, hash);
+
+                // Chamada do metodo de validacao do arquivo
+                Transaction[] transactions = searchApi.SearchByHash(Token.sign(privateKey), account, user, pass, hash);
                 return transactions;
             }
             catch (Exception ex)

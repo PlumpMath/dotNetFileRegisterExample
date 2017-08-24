@@ -38,7 +38,7 @@
             <ListBox x:Name="listaProtocolos" HorizontalAlignment="Left" Height="166" VerticalAlignment="Top" Width="338" Background="#FFABADB3" Foreground="White" Canvas.Top="40" Canvas.Left="10"/>
             <Label Content="Protocolos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FFABADB3" Foreground="White" Canvas.Left="10" Canvas.Top="7"/>
         </Canvas>
-        <ProgressBar x:Name="progress" HorizontalAlignment="Left" Height="5" Margin="107.979,416,0,0" VerticalAlignment="Top" Width="100" IsIndeterminate="True" Foreground="#FFDC3030" UseLayoutRounding="False" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+        <ProgressBar x:Name="progress" HorizontalAlignment="Left" Height="5" Margin="517.979,407,0,0" VerticalAlignment="Top" Width="100" IsIndeterminate="True" Foreground="#FFDC3030" UseLayoutRounding="False" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
             <ProgressBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="1"/>
