@@ -1,5 +1,5 @@
 #### Somos especialistas em BLOCKCHAIN.
-[![N|Solid] [IMG]] [STR]
+[![N|Solid](https://www.astarlabs.com/wp-content/uploads/2017/08/a-star.jpg)](https://www.astarlabs.com/)
   #### Faça parte da revolução!
   # Conecte-se a nossa  [Star Blockchain API] [API]
   _
@@ -93,8 +93,7 @@ namespace AppBlockchain
     }
 }
 ```
-[IMG]: <https://www.astarlabs.com/wp-content/uploads/2017/08/a-star.jpg>
-[STR]: <https://www.astarlabs.com/>
+[IMG]: <>
+[STR]: <>
 [API]: <https://www.astarlabs.com/produtos/star-blockchain-api/>
 [INS]: <https://github.com/astarlabs/dotNetFileRegisterExample/tree/master/Installer/Release>
-[MNF]: <https://www.microsoft.com/net/download/framework>
