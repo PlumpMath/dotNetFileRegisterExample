@@ -12,7 +12,7 @@
 
 
 ##### Tech
-Aplicação cliente desenvolvida na plataforma Microsoft .NET Framework 4.5.2 para consumir os serviços disponíveis da Star Blockchain API.
+Aplicação cliente desenvolvida com [C#](https://docs.microsoft.com/pt-br/dotnet/csharp/csharp) na [plataforma Microsoft .NET](https://docs.microsoft.com/pt-br/dotnet/framework/) para consumir os serviços disponíveis da [Star Blockchain API](https://www.astarlabs.com/produtos/star-blockchain-api/).
 
 ##### Installation
 [AppBlockchain](https://github.com/astarlabs/dotNetFileRegisterExample/tree/master/Installer/Release) necessita do [Microsoft .NET Framework](https://www.microsoft.com/net/download/framework) 4.5.2 ou superior para executar.
@@ -92,4 +92,3 @@ namespace AppBlockchain
         }
     }
 }
-```
