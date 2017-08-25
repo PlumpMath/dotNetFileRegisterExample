@@ -55,22 +55,6 @@ namespace AppBlockchain
             }
 
         }
-
-        public Transaction SearchByApiId(string privateKey, int account, string user, string pass, int id)
-        {
-            try
-            {
-                searchApi = new SearchApi();
-                return searchApi.SearchByAPIID(AStar.Util.Token.sign(privateKey), account, user, pass, id);
-            }
-            catch (Exception ex)
-            {
-                Transaction transaction = new AStar.Model.Transaction();
-                transaction.Errormessage = "Erro na chamada da rotina SearchByHash. Exception: " + ex.Message;
-                return transaction;
-            }
-
-        }
     }
 }
 

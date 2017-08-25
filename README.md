@@ -43,11 +43,11 @@ namespace AppBlockchain
                 SendApi Api = new SendApi();
                 SingleResult singleResult = new SingleResult();
                 
-                // Chamada do metodo de registro de arquivos da API
+                // Chamada de registro de arquivos
                 singleResult = await Api.SendHashAsync(AStar.Util.Token.sign(privateKey), 
                                                         account, user, pass, hash, coin, test);
                 
-                // Verificação do retorno do metodo
+                // Verificando retorno do metodo
                 if (singleResult.Error != null)
                     return "Erro de execucao da rotina SendFile da API. " + singleResult.Result;
                 else
@@ -75,7 +75,7 @@ namespace AppBlockchain
             {
                 // Daclaracao e instancia de objeto da classe utilizada
                 searchApi = new SearchApi();
-                // Chamada do metodo de validacao do arquivo
+                // Chamada de Validacao de arquivos
                 Transaction[] transactions = searchApi.SearchByHash(AStar.Util.Token.sign(privateKey), 
                                                                     account, user, pass, hash);
                 // Retorno dos resultados
