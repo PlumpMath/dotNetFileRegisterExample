@@ -18,13 +18,18 @@ Aplicação cliente desenvolvida na plataforma Microsoft .NET Framework 4.5.2 para
 [AppBlockchain] [INS] necessita do [Microsoft .NET Framework] [MNF] 4.5.2 ou superior para executar.
 
 ##### Exemplo de código
+Bibliotecas
+```sh
+using System;
+using AStar.Api;
+using AStar.Model;
+using AStar.Util;
+using System.Threading.Tasks;
+````
 
 Registrar Arquivo:
 
 ```sh
-using AStar;
-using AStar.Model;
-
 namespace AppBlockchain
 {
     public class ApiBlockchain
@@ -59,12 +64,6 @@ namespace AppBlockchain
 
 Validar Aquivo:
 ```sh
-using System;
-using AStar.Api;
-using AStar.Model;
-using AStar.Util;
-using System.Threading.Tasks;
-
 namespace AppBlockchain
 {
     public class ApiBlockchain
