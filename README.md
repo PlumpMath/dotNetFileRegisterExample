@@ -1,9 +1,9 @@
 #### Somos especialistas em BLOCKCHAIN.
 [![N|Solid](https://www.astarlabs.com/wp-content/uploads/2017/08/a-star.jpg)](https://www.astarlabs.com/)
   #### Faça parte da revolução!
-  # Conecte-se a nossa  [Star Blockchain API] [API]
+  # Conecte-se a nossa  [Star Blockchain API](https://www.astarlabs.com/produtos/star-blockchain-api/)
   _
-##### Você pode:
+##### You can:
   - Registrar arquivos numa base de dados descentralizada, compartilhada, pública e criptografada conhecida também como o protocolo da confiança.
   - Pesquisar, validar, verificar ou atestar a autenticidade de seus arquivos a qualquer momento apenas com um click
   
@@ -15,9 +15,9 @@
 Aplicação cliente desenvolvida na plataforma Microsoft .NET Framework 4.5.2 para consumir os serviços disponíveis da Star Blockchain API.
 
 ##### Installation
-[AppBlockchain] [INS] necessita do [Microsoft .NET Framework] [MNF] 4.5.2 ou superior para executar.
+[AppBlockchain](https://github.com/astarlabs/dotNetFileRegisterExample/tree/master/Installer/Release) necessita do [Microsoft .NET Framework](https://www.microsoft.com/net/download/framework) 4.5.2 ou superior para executar.
 
-##### Exemplo de código
+##### Example Code
 Bibliotecas
 ```sh
 using System;
@@ -93,7 +93,3 @@ namespace AppBlockchain
     }
 }
 ```
-[IMG]: <>
-[STR]: <>
-[API]: <https://www.astarlabs.com/produtos/star-blockchain-api/>
-[INS]: <https://github.com/astarlabs/dotNetFileRegisterExample/tree/master/Installer/Release>
